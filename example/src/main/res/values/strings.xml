@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Content Loading Progress Dialog Example</string>
+
+    <string name="action_about">About</string>
+    <string name="action_github">Github</string>
+    <string name="action_android_app">Android App</string>
+
+
+</resources>
