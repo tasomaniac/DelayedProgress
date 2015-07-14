@@ -1,15 +1,15 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.hugo'
-
-def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
-def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
+        applicationId 'com.tasomaniac.contentloadingprogressdialog.sample'
         minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
+        versionCode 1
+        versionName "$VERSION_NAME"
     }
 
     compileOptions {
@@ -22,4 +22,7 @@ android {
     }
 }
 
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+dependencies {
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile project(':library')
+}
