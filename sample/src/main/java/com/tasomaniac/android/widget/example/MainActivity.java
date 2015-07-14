@@ -44,8 +44,7 @@ public class MainActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        switch (position)
-        {
+        switch (position) {
             case 0:
                 ProgressDialog.show(this, null, "Loading", true, true);
                 break;
@@ -107,8 +106,7 @@ public class MainActivity extends ListActivity {
         }
     }
 
-    public class MyAdapter extends ArrayAdapter<Pair<String, String>>
-    {
+    public class MyAdapter extends ArrayAdapter<Pair<String, String>> {
         public MyAdapter(Context context, Pair<String, String>[] list) {
             super(context, android.R.layout.simple_list_item_2, list);
         }
@@ -127,6 +125,7 @@ public class MainActivity extends ListActivity {
             twoLineListItem.getText1().setText(getItem(position).first);
             twoLineListItem.getText2().setText(getItem(position).second);
 
-            return twoLineListItem;        }
+            return twoLineListItem;
+        }
     }
 }
