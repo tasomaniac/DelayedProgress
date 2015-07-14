@@ -1,4 +1,4 @@
-package com.metrekare.android.widget.example;
+package com.tasomaniac.android.widget.example;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TwoLineListItem;
 
-import com.metrekare.android.widget.ContentLoadingProgressDialog;
+import com.tasomaniac.android.widget.ContentLoadingProgressDialog;
 
 
 public class MainActivity extends ListActivity {
@@ -94,16 +94,13 @@ public class MainActivity extends ListActivity {
             case R.id.action_about:
                 Dialog d = new AlertDialog.Builder(this)
                         .setTitle(R.string.action_about)
-                        .setMessage(Html.fromHtml("ProgressDialog that waits a minimum time to be dismissed before showing.<br>Once visible, the ProgressDialog will be visible for a minimum amount of time to avoid \"flashes\" in the UI.<br><br>Brought to you by the <a href=\"http://www.tasomaniac.com\">Said Tahsin Dane</a> from <a href=\"https://www.metrekare.com\">Metrekare.com</a> (A destruptive real-estate startup from Turkey)."))
+                        .setMessage(Html.fromHtml("ProgressDialog that waits a minimum time to be dismissed before showing.<br>Once visible, the ProgressDialog will be visible for a minimum amount of time to avoid \"flashes\" in the UI.<br><br>Brought to you by <a href=\"http://www.tasomaniac.com\">Said Tahsin Dane</a>."))
                         .setPositiveButton(android.R.string.ok, null)
                         .show();
                 ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                 return true;
             case R.id.action_github:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/metrekare/ContentLoadingProgressDialog")));
-                return true;
-            case R.id.action_android_app:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.metrekare.android.app")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/tasomaniac/ContentLoadingProgressDialog")));
                 return true;
             default:
                 return false;

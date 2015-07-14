@@ -1,4 +1,4 @@
-package com.metrekare.android.widget;
+package com.tasomaniac.android.widget;
 
 import android.app.ProgressDialog;
 import android.content.Context;

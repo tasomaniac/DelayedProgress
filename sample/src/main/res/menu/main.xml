@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.metrekare.android.widget.example.MainActivity" >
+    tools:context="com.tasomaniac.android.widget.example.MainActivity" >
     
     <item android:id="@+id/action_about"
         android:title="@string/action_about"
@@ -11,7 +11,4 @@
         android:title="@string/action_github"
         app:showAsAction="never" />
 
-    <item android:id="@+id/action_android_app"
-        android:title="@string/action_android_app"
-        app:showAsAction="never" />
 </menu>
