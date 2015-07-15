@@ -1,3 +1,5 @@
+import com.android.builder.core.BuilderConstants
+
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.hugo'
 
@@ -20,6 +22,17 @@ android {
     dexOptions {
         preDexLibraries = !rootProject.ext.ci
     }
+}
+
+android.libraryVariants.all { variant ->
+    def name = variant.buildType.name
+    if (name.equals(BuilderConstants.DEBUG)) {
+        return; // Skip debug builds.
+    }
+    def task = project.tasks.create "jar${name.capitalize()}", Jar
+    task.dependsOn variant.javaCompile
+    task.from variant.javaCompile.destinationDir
+    artifacts.add('archives', task);
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
