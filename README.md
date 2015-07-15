@@ -2,6 +2,8 @@ ContentLoadingProgressDialog
 ============================
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ContentLoadingProgressDialog-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2117)
+[![Build Status](https://travis-ci.org/tasomaniac/ContentLoadingProgressDialog.png?branch=develop)](https://travis-ci.org/tasomaniac/ContentLoadingProgressDialog)
+[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 ProgressDialog that waits a minimum time to be dismissed before showing. Once visible, the ProgressDialog will be visible for a minimum amount of time to avoid "flashes" in the UI.
 
