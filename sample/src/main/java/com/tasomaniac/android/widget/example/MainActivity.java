@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TwoLineListItem;
 
-import com.tasomaniac.android.widget.ContentLoadingProgressDialog;
+import com.tasomaniac.android.widget.DelayedProgressDialog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                 return true;
             case R.id.action_github:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/tasomaniac/ContentLoadingProgressDialog")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/tasomaniac/DelayedProgress")));
                 return true;
             default:
                 return false;
@@ -109,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
                     ProgressDialog.show(getActivity(), null, "Loading", true, true);
                     break;
                 case 1:
-                    ContentLoadingProgressDialog.showDelayed(getActivity(), null, "Loading", true, true);
+                    DelayedProgressDialog.showDelayed(getActivity(), null, "Loading", true, true);
                     break;
                 case 2:
-                    ContentLoadingProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(2000).show();
+                    DelayedProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(2000).show();
                     break;
                 case 3: {
-                    final ContentLoadingProgressDialog dialog = ContentLoadingProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(1000);
+                    final DelayedProgressDialog dialog = DelayedProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(1000);
                     dialog.show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
                 case 4: {
-                    final ContentLoadingProgressDialog dialog = ContentLoadingProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(1000).minShowTime(0);
+                    final DelayedProgressDialog dialog = DelayedProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(1000).minShowTime(0);
                     dialog.show();
                     new Handler().postDelayed(new Runnable() {
                         @Override

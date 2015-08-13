@@ -5,12 +5,12 @@ import android.content.Context;
 import android.os.Handler;
 
 /**
- * ContentLoadingProgressDialog implements a ProgressDialog that waits a minimum time to be
+ * DelayedProgressDialog implements a ProgressDialog that waits a minimum time to be
  * dismissed before showing. Once visible, the progress bar will be visible for
  * a minimum amount of time to avoid "flashes" in the UI when an event could take
  * a largely variable time to complete (from none, to a user perceivable amount)
  */
-public class ContentLoadingProgressDialog extends ProgressDialog {
+public class DelayedProgressDialog extends ProgressDialog {
 
     private static final int DEFAULT_MIN_DELAY = 500; // ms
 
@@ -35,7 +35,7 @@ public class ContentLoadingProgressDialog extends ProgressDialog {
         public void run() {
             mPostedHide = false;
             mStartTime = -1;
-            ContentLoadingProgressDialog.super.dismiss();
+            DelayedProgressDialog.super.dismiss();
         }
     };
 
@@ -46,81 +46,81 @@ public class ContentLoadingProgressDialog extends ProgressDialog {
             mPostedShow = false;
             if (!mDismissed) {
                 mStartTime = System.currentTimeMillis();
-                ContentLoadingProgressDialog.super.show();
+                DelayedProgressDialog.super.show();
             }
         }
     };
 
-    public ContentLoadingProgressDialog(Context context) {
+    public DelayedProgressDialog(Context context) {
         super(context);
         mHandler = new Handler();
     }
 
-    public ContentLoadingProgressDialog(Context context, int theme) {
+    public DelayedProgressDialog(Context context, int theme) {
         super(context, theme);
         mHandler = new Handler();
     }
 
-    public ContentLoadingProgressDialog title(CharSequence title) {
+    public DelayedProgressDialog title(CharSequence title) {
         super.setTitle(title);
         return this;
     }
 
-    public ContentLoadingProgressDialog message(CharSequence message) {
+    public DelayedProgressDialog message(CharSequence message) {
         super.setMessage(message);
         return this;
     }
 
-    public ContentLoadingProgressDialog minShowTime(int minShowTime) {
+    public DelayedProgressDialog minShowTime(int minShowTime) {
         this.minShowTime = minShowTime;
         return this;
     }
 
-    public ContentLoadingProgressDialog minDelay(int minDelay) {
+    public DelayedProgressDialog minDelay(int minDelay) {
         this.minDelay = minDelay;
         return this;
     }
 
-    public ContentLoadingProgressDialog cancelable(boolean cancelable) {
+    public DelayedProgressDialog cancelable(boolean cancelable) {
         super.setCancelable(cancelable);
         return this;
     }
 
-    public ContentLoadingProgressDialog indeterminate(boolean indeterminate) {
+    public DelayedProgressDialog indeterminate(boolean indeterminate) {
         super.setIndeterminate(indeterminate);
         return this;
     }
 
-    public ContentLoadingProgressDialog title(String title) {
+    public DelayedProgressDialog title(String title) {
         super.setTitle(title);
         return this;
     }
 
-    public ContentLoadingProgressDialog message(String message) {
+    public DelayedProgressDialog message(String message) {
         super.setMessage(message);
         return this;
     }
 
-    public static ContentLoadingProgressDialog makeDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
                                              CharSequence message) {
         return makeDelayed(context, title, message, false);
     }
 
-    public static ContentLoadingProgressDialog makeDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
                                              CharSequence message, boolean indeterminate) {
         return makeDelayed(context, title, message, indeterminate, false, null);
     }
 
-    public static ContentLoadingProgressDialog makeDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
                                              CharSequence message, boolean indeterminate, boolean cancelable) {
         return makeDelayed(context, title, message, indeterminate, cancelable, null);
     }
 
-    public static ContentLoadingProgressDialog makeDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
                                                            CharSequence message,
                                                            boolean indeterminate,
                                                            boolean cancelable, OnCancelListener cancelListener) {
-        ContentLoadingProgressDialog dialog = new ContentLoadingProgressDialog(context);
+        DelayedProgressDialog dialog = new DelayedProgressDialog(context);
         dialog.setTitle(title);
         dialog.setMessage(message);
         dialog.setIndeterminate(indeterminate);
@@ -130,26 +130,26 @@ public class ContentLoadingProgressDialog extends ProgressDialog {
         return dialog;
     }
 
-    public static ContentLoadingProgressDialog showDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
                                       CharSequence message) {
         return showDelayed(context, title, message, false);
     }
 
-    public static ContentLoadingProgressDialog showDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
                                              CharSequence message, boolean indeterminate) {
         return showDelayed(context, title, message, indeterminate, false, null);
     }
 
-    public static ContentLoadingProgressDialog showDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
                                       CharSequence message, boolean indeterminate, boolean cancelable) {
         return showDelayed(context, title, message, indeterminate, cancelable, null);
     }
 
-    public static ContentLoadingProgressDialog showDelayed(Context context, CharSequence title,
+    public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
                                                            CharSequence message,
                                                            boolean indeterminate,
                                                            boolean cancelable, OnCancelListener cancelListener) {
-        ContentLoadingProgressDialog dialog = new ContentLoadingProgressDialog(context);
+        DelayedProgressDialog dialog = new DelayedProgressDialog(context);
         dialog.setTitle(title);
         dialog.setMessage(message);
         dialog.setIndeterminate(indeterminate);
