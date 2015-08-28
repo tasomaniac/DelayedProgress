@@ -2,15 +2,12 @@ import com.android.builder.core.BuilderConstants
 
 apply plugin: 'com.android.library'
 
-def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
-def buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 1
+        minSdkVersion 4
     }
 
     compileOptions {
@@ -32,6 +29,11 @@ android.libraryVariants.all { variant ->
     task.dependsOn variant.javaCompile
     task.from variant.javaCompile.destinationDir
     artifacts.add('archives', task);
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:23.0.0'
+    compile 'com.android.support:support-annotations:23.0.0'
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
