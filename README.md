@@ -13,34 +13,26 @@ They extend platform version of them so that you can just replace all of your Pr
 Usage
 -----
 
-You can use it just like `ProgressDialog`. Just use `show()` and `dismiss()` appropriately and it will handle the rest. 
+DelayedProgressDialog
+---------------------
 
-To create a `DelayedProgressDialog` with default values
+`DelayedProgressDialog` is an extension to `ProgressDialog` that handles automatic delaying and prevents flashes in the UI.
+You can use it just like `ProgressDialog`. Just use `show()` and `dismiss()` appropriately and it will handle the rest.
+
+To create a `DelayedProgressDialog` with default timing values
 
     DelayedProgressDialog.showDelayed(context, title, message, indeterminate, cancelable);
     
-You can use `makeDelayed()` to just create and show it manually. This way you can modify it easily
+You can use `make()` to just create (without calling `show()`) it manually. This way you can modify it easily before calling `show()`
 
     DelayedProgressDialog.makeDelayed(context, title, message, indeterminate, cancelable);
     
 And configure
 
-    DelayedProgressDialog.makeDelayed(context, title, message, indeterminate, cancelable)
-                                .minDelay(2000)
-                                .minShowTime(500)
-                                .show();
-                                
-The library also supports setter functions for easy usage.
-
-    new DelayedProgressDialog(this)
-                .title(title)
-                .message(message)
-                .indeterminate(true)
-                .cancelable(true)
-                .minDelay(delay)
-                .minShowTime(minShowTime)
-                .show();
-
+    DelayedProgressDialog dialog = DelayedProgressDialog.make(...);
+    dialog.setMinDelay(2000);
+    dialog.setMinShowTime(500);
+    dialog.show();
 
 Download
 --------
@@ -50,8 +42,6 @@ compile 'com.tasomaniac:delayedprogress:0.2'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
-
-
 
 License
 -------
