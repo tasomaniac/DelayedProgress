@@ -65,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static class MyAdapter extends ArrayAdapter<Pair<String, String>> {
-        public MyAdapter(Context context, Pair<String, String>[] list) {
+    @SuppressWarnings("deprecation")
+    public static class MyAdapter extends ArrayAdapter<Pair> {
+        public MyAdapter(Context context, Pair[] list) {
             super(context, android.R.layout.simple_list_item_2, list);
         }
 
@@ -81,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 twoLineListItem = (TwoLineListItem) convertView;
             }
 
-            twoLineListItem.getText1().setText(getItem(position).first);
-            twoLineListItem.getText2().setText(getItem(position).second);
+            twoLineListItem.getText1().setText(getItem(position).first.toString());
+            twoLineListItem.getText2().setText(getItem(position).second.toString());
 
             return twoLineListItem;
         }
@@ -111,11 +112,17 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     DelayedProgressDialog.showDelayed(getActivity(), null, "Loading", true, true);
                     break;
-                case 2:
-                    DelayedProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(2000).show();
+                case 2: {
+                    DelayedProgressDialog dialog = DelayedProgressDialog.make(getActivity(),
+                            null, "Loading", true, true);
+                    dialog.setMinDelay(2000);
+                    dialog.show();
                     break;
+                }
                 case 3: {
-                    final DelayedProgressDialog dialog = DelayedProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(1000);
+                    final DelayedProgressDialog dialog = DelayedProgressDialog.make(getActivity(),
+                            null, "Loading", true, true);
+                    dialog.setMinDelay(1000);
                     dialog.show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -127,7 +134,10 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
                 case 4: {
-                    final DelayedProgressDialog dialog = DelayedProgressDialog.makeDelayed(getActivity(), null, "Loading", true, true).minDelay(1000).minShowTime(0);
+                    final DelayedProgressDialog dialog = DelayedProgressDialog.make(getActivity(),
+                            null, "Loading", true, true);
+                    dialog.setMinDelay(1000);
+                    dialog.setMinShowTime(0);
                     dialog.show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
