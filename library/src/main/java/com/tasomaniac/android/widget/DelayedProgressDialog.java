@@ -10,9 +10,8 @@ import android.os.Handler;
  * a minimum amount of time to avoid "flashes" in the UI when an event could take
  * a largely variable time to complete (from none, to a user perceivable amount)
  */
+@SuppressWarnings("unused")
 public class DelayedProgressDialog extends ProgressDialog {
-
-    private static final int DEFAULT_MIN_DELAY = 500; // ms
 
     private long mStartTime = -1;
 
@@ -27,7 +26,6 @@ public class DelayedProgressDialog extends ProgressDialog {
     private int minDelay = 500; // ms
 
     private Handler mHandler;
-
 
     private final Runnable mDelayedHide = new Runnable() {
 
@@ -61,101 +59,64 @@ public class DelayedProgressDialog extends ProgressDialog {
         mHandler = new Handler();
     }
 
-    public DelayedProgressDialog title(CharSequence title) {
-        super.setTitle(title);
-        return this;
-    }
-
-    public DelayedProgressDialog message(CharSequence message) {
-        super.setMessage(message);
-        return this;
-    }
-
-    public DelayedProgressDialog minShowTime(int minShowTime) {
+    public void setMinShowTime(int minShowTime) {
         this.minShowTime = minShowTime;
-        return this;
     }
 
-    public DelayedProgressDialog minDelay(int minDelay) {
+    public void setMinDelay(int minDelay) {
         this.minDelay = minDelay;
-        return this;
     }
 
-    public DelayedProgressDialog cancelable(boolean cancelable) {
-        super.setCancelable(cancelable);
-        return this;
+    public static DelayedProgressDialog make(Context context, CharSequence title,
+                                                    CharSequence message) {
+        return make(context, title, message, false);
     }
 
-    public DelayedProgressDialog indeterminate(boolean indeterminate) {
-        super.setIndeterminate(indeterminate);
-        return this;
+    public static DelayedProgressDialog make(Context context, CharSequence title,
+                                                    CharSequence message, boolean indeterminate) {
+        return make(context, title, message, indeterminate, false, null);
     }
 
-    public DelayedProgressDialog title(String title) {
-        super.setTitle(title);
-        return this;
+    public static DelayedProgressDialog make(Context context, CharSequence title,
+                                                    CharSequence message, boolean indeterminate, boolean cancelable) {
+        return make(context, title, message, indeterminate, cancelable, null);
     }
 
-    public DelayedProgressDialog message(String message) {
-        super.setMessage(message);
-        return this;
-    }
-
-    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
-                                             CharSequence message) {
-        return makeDelayed(context, title, message, false);
-    }
-
-    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
-                                             CharSequence message, boolean indeterminate) {
-        return makeDelayed(context, title, message, indeterminate, false, null);
-    }
-
-    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
-                                             CharSequence message, boolean indeterminate, boolean cancelable) {
-        return makeDelayed(context, title, message, indeterminate, cancelable, null);
-    }
-
-    public static DelayedProgressDialog makeDelayed(Context context, CharSequence title,
-                                                           CharSequence message,
-                                                           boolean indeterminate,
-                                                           boolean cancelable, OnCancelListener cancelListener) {
+    public static DelayedProgressDialog make(Context context, CharSequence title,
+                                                    CharSequence message,
+                                                    boolean indeterminate, boolean cancelable,
+                                                    OnCancelListener cancelListener) {
         DelayedProgressDialog dialog = new DelayedProgressDialog(context);
         dialog.setTitle(title);
         dialog.setMessage(message);
         dialog.setIndeterminate(indeterminate);
         dialog.setCancelable(cancelable);
         dialog.setOnCancelListener(cancelListener);
-        dialog.minDelay(DEFAULT_MIN_DELAY);
         return dialog;
     }
 
     public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
-                                      CharSequence message) {
+                                                    CharSequence message) {
         return showDelayed(context, title, message, false);
     }
 
     public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
-                                             CharSequence message, boolean indeterminate) {
+                                                    CharSequence message, boolean indeterminate) {
         return showDelayed(context, title, message, indeterminate, false, null);
     }
 
     public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
-                                      CharSequence message, boolean indeterminate, boolean cancelable) {
+                                                    CharSequence message, boolean indeterminate,
+                                                    boolean cancelable) {
         return showDelayed(context, title, message, indeterminate, cancelable, null);
     }
 
     public static DelayedProgressDialog showDelayed(Context context, CharSequence title,
-                                                           CharSequence message,
-                                                           boolean indeterminate,
-                                                           boolean cancelable, OnCancelListener cancelListener) {
-        DelayedProgressDialog dialog = new DelayedProgressDialog(context);
-        dialog.setTitle(title);
-        dialog.setMessage(message);
-        dialog.setIndeterminate(indeterminate);
-        dialog.setCancelable(cancelable);
-        dialog.setOnCancelListener(cancelListener);
-        dialog.minDelay(DEFAULT_MIN_DELAY);
+                                                    CharSequence message,
+                                                    boolean indeterminate, boolean cancelable,
+                                                    OnCancelListener cancelListener) {
+        DelayedProgressDialog dialog = make(context, title, message,
+                indeterminate, cancelable, cancelListener);
         dialog.show();
         return dialog;
     }
@@ -173,7 +134,7 @@ public class DelayedProgressDialog extends ProgressDialog {
     }
 
     private void removeCallbacks() {
-        if(mHandler != null) {
+        if (mHandler != null) {
             mHandler.removeCallbacks(mDelayedHide);
             mHandler.removeCallbacks(mDelayedShow);
         }
