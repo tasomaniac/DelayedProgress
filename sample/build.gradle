@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId 'com.tasomaniac.contentloadingprogressdialog.sample'
+        applicationId 'com.tasomaniac.delayedprogress.sample'
         minSdkVersion 7
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
@@ -23,6 +23,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:appcompat-v7:23.0.0'
     compile project(':library')
 }
