@@ -13,6 +13,42 @@ They extend platform version of them so that you can just replace all of your Pr
 Usage
 -----
 
+DelayedProgressBar
+------------------
+
+`DelayedProgressBar` is an extension to `ProgressBar` that handles automatic delaying and prevents flashes in the UI.
+
+You can create it programatically just like you do with `ProgressBar` or you can use it in your XMLs.
+
+    <com.tasomaniac.android.widget.DelayedProgressBar
+        android:id="@android:id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="?android:progressBarStyleHorizontal"/>
+
+And you have to use `show()` and `hide()` functions instead of setting its visibility manually to have awesome delaying functionality.
+
+Additionally we have `show(boolean animate)` and `hide(boolean animate)` that fades in and out the `ProgressBar`.
+
+    progressbar.show(true);
+
+Lastly, if you want to do something when the animation ends, you can use the below function with endAction.
+
+    progressbar.show(true, new Runnable() {
+        @Override
+        public void run() {
+            //Do something
+        }
+    });
+
+    progressbar.hide(true, new Runnable() {
+        @Override
+        public void run() {
+            //Do something
+        }
+    });
+
 DelayedProgressDialog
 ---------------------
 
