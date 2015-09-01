@@ -1,33 +1,18 @@
 package com.tasomaniac.android.widget.example;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ListFragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Pair;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.TwoLineListItem;
 
 import com.tasomaniac.android.widget.DelayedProgressDialog;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,61 +25,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_about:
-                Dialog d = new AlertDialog.Builder(this)
-                        .setTitle(R.string.action_about)
-                        .setMessage(Html.fromHtml("ProgressDialog that waits a minimum time to be dismissed before showing.<br>Once visible, the ProgressDialog will be visible for a minimum amount of time to avoid \"flashes\" in the UI.<br><br>Brought to you by <a href=\"http://www.tasomaniac.com\">Said Tahsin Dane</a>."))
-                        .setPositiveButton(android.R.string.ok, null)
-                        .show();
-                ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-                return true;
-            case R.id.action_github:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/tasomaniac/DelayedProgress")));
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    public static class MyAdapter extends ArrayAdapter<Pair> {
-        public MyAdapter(Context context, Pair[] list) {
-            super(context, android.R.layout.simple_list_item_2, list);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TwoLineListItem twoLineListItem;
-
-            if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                twoLineListItem = (TwoLineListItem) inflater.inflate(android.R.layout.simple_list_item_2, null);
-            } else {
-                twoLineListItem = (TwoLineListItem) convertView;
-            }
-
-            twoLineListItem.getText1().setText(getItem(position).first.toString());
-            twoLineListItem.getText2().setText(getItem(position).second.toString());
-
-            return twoLineListItem;
-        }
-    }
-
     public static class MainListFragment extends ListFragment {
 
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            setListAdapter(new MyAdapter(getActivity(), new Pair[]{
+            setListAdapter(new PairAdapter(getActivity(), new Pair[]{
                     Pair.create("Regular ProgressDialog", ""),
                     Pair.create("Delayed ProgressDialog", "ProgressDialog that waits a minimum time to be dismissed before showing"),
                     Pair.create("With custom delay", "Basic progress dialog with default 2 seconds delay. (Default it 500ms)"),
