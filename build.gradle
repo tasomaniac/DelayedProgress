@@ -22,5 +22,5 @@ ext {
     ci = "true".equals(System.getenv("TRAVIS"))
 
     compileSdkVersion = 23
-    buildToolsVersion = "23.0.0"
+    buildToolsVersion = "23.0.1"
 }
