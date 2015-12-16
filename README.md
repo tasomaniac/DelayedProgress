@@ -74,7 +74,7 @@ Download
 --------
 
 ```groovy
-compile 'com.tasomaniac:delayed-progress:0.2'
+compile 'com.tasomaniac:delayed-progress:0.3'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].

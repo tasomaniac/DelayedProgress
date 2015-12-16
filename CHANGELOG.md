@@ -1,7 +1,12 @@
 Change Log
 ==========
 
-Version 0.2 *(2015-12-16)*
+Version 0.3 *(2015-12-16)*
+--------------------------
+
+Moved to `.aar` dependency because we have support library dependency which is an `aar`.
+
+Version 0.2 *(2015-07-15)*
 ----------------------------
 
 Maven integration and package name change.
