@@ -10,6 +10,14 @@ Once visible, the they will be visible for a minimum amount of time to avoid "fl
 
 They extend platform version of them so that you can just replace all of your ProgressBar and ProgressDialog implementations quickly.
 
+How does it look like?
+----------------------
+
+Here is a demonstration of the usage in [GDG Android App](https://github.com/gdg-x/frisbee/).
+As you can see here, on orientation change, the data is loaded quickly and has no progress indicator.
+
+![](https://cloud.githubusercontent.com/assets/763339/11843080/39e52c96-a410-11e5-81ea-f8c0ec623283.gif)
+
 Usage
 -----
 
