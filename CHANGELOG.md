@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 0.4 *(2016-10-13)*
+--------------------------
+
+Fixes an edge case bug which happens when `DelayedProgressBar` is attached to window after `show()`
+method is called. See #1
+
+
 Version 0.3 *(2015-12-16)*
 --------------------------
 
