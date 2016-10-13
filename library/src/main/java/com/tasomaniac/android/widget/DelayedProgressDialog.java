@@ -122,12 +122,6 @@ public class DelayedProgressDialog extends ProgressDialog {
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        removeCallbacks();
-    }
-
-    @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         removeCallbacks();
@@ -136,7 +130,9 @@ public class DelayedProgressDialog extends ProgressDialog {
     private void removeCallbacks() {
         if (mHandler != null) {
             mHandler.removeCallbacks(mDelayedHide);
+            mPostedHide = false;
             mHandler.removeCallbacks(mDelayedShow);
+            mPostedShow = false;
         }
     }
 
@@ -149,6 +145,7 @@ public class DelayedProgressDialog extends ProgressDialog {
     public void dismiss() {
         mDismissed = true;
         mHandler.removeCallbacks(mDelayedShow);
+        mPostedShow = false;
         long diff = System.currentTimeMillis() - mStartTime;
         if (diff >= minShowTime || mStartTime == -1) {
             // The progress spinner has been shown long enough
@@ -176,6 +173,7 @@ public class DelayedProgressDialog extends ProgressDialog {
         mStartTime = -1;
         mDismissed = false;
         mHandler.removeCallbacks(mDelayedHide);
+        mPostedHide = false;
         if (!mPostedShow) {
             mHandler.postDelayed(mDelayedShow, minDelay);
             mPostedShow = true;

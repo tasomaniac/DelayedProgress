@@ -85,12 +85,6 @@ public class DelayedProgressBar extends ProgressBar {
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        removeCallbacks();
-    }
-
-    @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         removeCallbacks();
@@ -98,7 +92,9 @@ public class DelayedProgressBar extends ProgressBar {
 
     private void removeCallbacks() {
         removeCallbacks(mDelayedHide);
+        mPostedHide = false;
         removeCallbacks(mDelayedShow);
+        mPostedShow = false;
     }
 
     /**
@@ -135,6 +131,7 @@ public class DelayedProgressBar extends ProgressBar {
 
         mDismissed = true;
         removeCallbacks(mDelayedShow);
+        mPostedShow = false;
         long diff = System.currentTimeMillis() - mStartTime;
         if (diff >= MIN_SHOW_TIME || mStartTime == -1) {
             doHide(animate);
@@ -204,6 +201,7 @@ public class DelayedProgressBar extends ProgressBar {
         mStartTime = -1;
         mDismissed = false;
         removeCallbacks(mDelayedHide);
+        mPostedHide = false;
         if (!mPostedShow) {
             postDelayed(mDelayedShow, MIN_DELAY);
             mPostedShow = true;
