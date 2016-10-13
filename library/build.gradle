@@ -5,21 +5,17 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 4
+        minSdkVersion 9
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-
-    dexOptions {
-        preDexLibraries = !rootProject.ext.ci
-    }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:support-v4:24.2.1'
 }
 
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
