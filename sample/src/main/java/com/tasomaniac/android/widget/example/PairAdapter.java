@@ -1,6 +1,7 @@
 package com.tasomaniac.android.widget.example;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.TwoLineListItem;
 
 @SuppressWarnings("deprecation")
-public class PairAdapter extends ArrayAdapter<Pair> {
-    public PairAdapter(Context context, Pair[] list) {
+class PairAdapter extends ArrayAdapter<Pair> {
+    PairAdapter(Context context, Pair[] list) {
         super(context, android.R.layout.simple_list_item_2, list);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         TwoLineListItem twoLineListItem;
 
         if (convertView == null) {
@@ -29,5 +31,12 @@ public class PairAdapter extends ArrayAdapter<Pair> {
         twoLineListItem.getText2().setText(getItem(position).second.toString());
 
         return twoLineListItem;
+    }
+
+    @NonNull
+    @Override
+    public Pair getItem(int position) {
+        //noinspection ConstantConditions
+        return super.getItem(position);
     }
 }
