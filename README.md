@@ -1,7 +1,7 @@
 DelayedProgress
 ============================
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ContentLoadingProgressDialog-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2117)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DelayedProgress-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2117)
 [![Build Status](https://travis-ci.org/tasomaniac/DelayedProgress.png?branch=master)](https://travis-ci.org/tasomaniac/DelayedProgress)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
