@@ -125,7 +125,7 @@ public class DelayedProgressBar extends ProgressBar {
      * @param animate whether to animate the progress bar.
      * @param endAction Runnable to run after the animation.
      */
-    public void hide(final boolean animate, @NonNull final Runnable endAction) {
+    public void hide(boolean animate, @NonNull Runnable endAction) {
         this.animate = animate;
         this.hideEndAction = endAction;
 
@@ -193,8 +193,7 @@ public class DelayedProgressBar extends ProgressBar {
      * @param animate whether to animate the progress bar.
      * @param endAction Runnable to run after the animation.
      */
-    public void show(boolean animate,
-                     @NonNull final Runnable endAction) {
+    public void show(boolean animate, @NonNull Runnable endAction) {
         this.animate = animate;
         this.showEndAction = endAction;
         // Reset the start time.
