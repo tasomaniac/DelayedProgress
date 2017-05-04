@@ -60,7 +60,7 @@ public class DelayedProgressBar extends ProgressBar {
             if (!mDismissed) {
                 mStartTime = System.currentTimeMillis();
                 if (animate) {
-                    ViewCompat.setAlpha(DelayedProgressBar.this, 0.0f);
+                    setAlpha(0f);
                     setVisibility(View.VISIBLE);
                     if (animator != null) {
                         animator.cancel();
